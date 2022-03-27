@@ -106,7 +106,8 @@ services:
 
   openmrs:
     profiles: ["default","openmrs"]
-    image: bahmni/openmrs:${OPENMRS_IMAGE_TAG:?}
+    image: hellosapiens/openmrs:latest # basically a copy of bahmni/opens:lates but with "ln -sf ..." in the bahmni_startup.sh file (the -sf causes the script to not crash if the symlink is already present)
+    #image: bahmni/openmrs:${OPENMRS_IMAGE_TAG:?}
     environment:
       DB_DATABASE: ${OPENMRS_DB_NAME:?}
       DB_HOST: ${OPENMRS_DB_HOST:?}
