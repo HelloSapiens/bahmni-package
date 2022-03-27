@@ -106,8 +106,8 @@ services:
 
   openmrs:
     profiles: ["default","openmrs","implementer-interface"]
-    image: hellosapiens/openmrs:latest # basically a copy of bahmni/opens:lates but with "ln -sf ..." in the bahmni_startup.sh file (the -sf causes the script to not crash if the symlink is already present)
-    #image: bahmni/openmrs:${OPENMRS_IMAGE_TAG:?}
+    #image: hellosapiens/openmrs:latest # basically a copy of bahmni/opens:lates but with "ln -sf ..." in the bahmni_startup.sh file (the -sf causes the script to not crash if the symlink is already present)
+    image: bahmni/openmrs:${OPENMRS_IMAGE_TAG:?}
     environment:
       DB_DATABASE: ${OPENMRS_DB_NAME:?}
       DB_HOST: ${OPENMRS_DB_HOST:?}
@@ -156,7 +156,7 @@ services:
 
   implementer-interface:
     image: bahmni/implementer-interface:${IMPLEMENTER_INTERFACE_IMAGE_TAG:?}
-    profiles: ["default","implementer-interface"]
+    profiles: ["default", "openmrs", "implementer-interface"]
     #volumes:
     #  - "${IMPLEMENTER_INTERFACE_CODE_PATH:?}/dist:/usr/local/apache2/htdocs/implementer_interface"
     depends_on:
